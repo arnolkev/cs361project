@@ -14,6 +14,7 @@ The server is now running on http://localhost:8080
 Install NodeJS first and navigate to client directory. In a second terminal:
 
 `npm install -g @angular/cli`
+
 `npm install`
 
 Before continuing, make sure the server is already running.
