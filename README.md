@@ -1,14 +1,23 @@
 # cs361project
 
-# Frontend app instructions
-Install NodeJS first.
-Then run:
+# Server instructions
+
+Install NodeJS and navigate to the server directory.  In a terminal:
+
+`npm install`
+
+`node server`
+
+The server is now running on http://localhost:8080
+
+# Angular client app instructions
+Install NodeJS first and navigate to client directory. In a second terminal:
+
 `npm install -g @angular/cli`
+`npm install`
 
-`cd frontend`
+Before continuing, make sure the server is already running.
 
-`npm i`
+`npm start`
 
-`ng serve`
-
-The app is running now on http://localhost:3000/
+The app is now running on http://localhost:3000/
