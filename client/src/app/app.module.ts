@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule, Http, RequestOptions } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatRadioModule } from '@angular/material';
 
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
@@ -14,7 +16,7 @@ import { CallbackComponent } from './components/callback/callback.component';
 import { DatabaseService } from 'app/services/database.service';
 import { ErrorHandlerService } from 'app/services/error-handler.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { AccountDetailsFormComponent } from './components/account-details-form/account-details-form.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig({
@@ -22,18 +24,27 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   }), http, options);
 }
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     CallbackComponent,
-    DashboardComponent
+    DashboardComponent,
+    AccountDetailsFormComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatRadioModule,
+    BrowserAnimationsModule
   ],
   providers: [
     AuthService,

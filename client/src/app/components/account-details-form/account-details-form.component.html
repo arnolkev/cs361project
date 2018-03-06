@@ -1,0 +1,50 @@
+<form [formGroup]="formGroup" class="detail-form column-flex">
+  <mat-form-field>
+    <input name="fname" matInput placeholder="First Name" formControlName="fname">
+  </mat-form-field>
+  <mat-form-field>
+    <input name="lname" matInput placeholder="Last Name" formControlName="lname">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="dob" placeholder="Date of Birth" formControlName="dob">
+    <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+    <mat-datepicker #dob></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input name="city" matInput placeholder="City" formControlName="city">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="State" formControlName="state">
+      <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select #accountTypeSelect placeholder="Account Type" formControlName="type">
+      <mat-option *ngFor="let entry of accountTypes" [value]="entry">{{entry}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- Homeless User -->
+  <mat-form-field *ngIf="type.value === accountTypes[0]">
+    <mat-select placeholder="Gender" formControlName="gender">
+      <mat-option *ngFor="let gender of genders" [value]="gender">{{gender}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-radio-group *ngIf="type.value === accountTypes[0]" formControlName="veteran">
+    <mat-radio-button value="Veteran">Veteran</mat-radio-button>
+    <mat-radio-button value="Not Veteran">Not Veteran</mat-radio-button>
+  </mat-radio-group>
+  <!-- Shelter Employee -->
+  <mat-form-field *ngIf="type.value === accountTypes[1]">
+    <mat-select placeholder="Shelter" formControlName="shelter">
+      <mat-option *ngFor="let shelter of shelters" [value]="shelter">{{shelter}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- Public Employee -->
+  <mat-form-field *ngIf="type.value === accountTypes[2]">
+    <mat-select placeholder="Employer" formControlName="employer">
+      <mat-option *ngFor="let employer of employers" [value]="employer">{{employer}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button type="button" class="btn btn-primary" [disabled]="!isValid()" (click)="onSubmit()">Submit</button>
+</form>

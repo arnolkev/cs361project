@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.database.getUserFromDatabase().subscribe(res => {
+    this.database.getUser().subscribe(res => {
       this.payload = res._body;
     });
   }
