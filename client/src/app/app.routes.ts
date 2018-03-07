@@ -1,13 +1,11 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { CallbackComponent } from './components/callback/callback.component';
-import { DashboardComponent } from 'app/components/dashboard/dashboard.component';
-import { AccountDetailsFormComponent } from 'app/components/account-details-form/account-details-form.component';
+import {Routes} from '@angular/router';
+import {DashboardComponent} from 'app/components/dashboard/dashboard.component';
+import {SignupComponent} from "./components/signup/signup.component";
+import {SigninComponent} from "./components/signin/signin.component";
 
 export const ROUTES: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'callback', component: CallbackComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'account-details', component: AccountDetailsFormComponent},
-  { path: '**', redirectTo: '' }
+    {path: '', component: SigninComponent},
+    {path: 'signup', component: SignupComponent},
+    {path: 'dashboard', component: DashboardComponent},
+    {path: '**', redirectTo: ''}
 ];

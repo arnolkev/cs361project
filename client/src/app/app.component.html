@@ -1,37 +1,26 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Auth0 - Angular</a>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand"
+               routerLink="/">
+                Homeless Temporary Housing
+            </a>
 
-      <button
-        class="btn btn-primary btn-margin"
-        routerLink="/">
-          Home
-      </button>
+            <button *ngIf="loggedIn"
+                    routerLink="/dashboard"
+                    class="btn btn-primary btn-margin">
+                Dashboard
+            </button>
 
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="!loggedIn">
-          Log In
-      </button>
-
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="loggedIn"
-        (click)="dashboardRedirect()">
-          Dashboard
-      </button>
-
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="loggedIn">
-          Log Out
-      </button>
-
+            <button *ngIf="loggedIn"
+                    (click)="logOut()"
+                    class="btn btn-primary btn-margin">
+                Log Out
+            </button>
+        </div>
     </div>
-  </div>
 </nav>
 
-<main class="container">
-  <router-outlet></router-outlet>
+<main>
+    <router-outlet></router-outlet>
 </main>
