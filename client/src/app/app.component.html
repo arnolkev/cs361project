@@ -11,22 +11,20 @@
 
       <button
         class="btn btn-primary btn-margin"
-        *ngIf="!auth.isAuthenticated()"
-        (click)="auth.login()">
+        *ngIf="!loggedIn">
           Log In
       </button>
 
       <button
         class="btn btn-primary btn-margin"
-        *ngIf="auth.isAuthenticated()"
+        *ngIf="loggedIn"
         (click)="dashboardRedirect()">
           Dashboard
       </button>
 
       <button
         class="btn btn-primary btn-margin"
-        *ngIf="auth.isAuthenticated()"
-        (click)="auth.logout()">
+        *ngIf="loggedIn">
           Log Out
       </button>
 

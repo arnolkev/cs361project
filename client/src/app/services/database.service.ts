@@ -12,8 +12,8 @@ import {
 } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import {
-  AuthHttp
-} from 'angular2-jwt';
+  HttpClient
+} from '@angular/common/http';
 import {
   ErrorHandlerService
 } from 'app/services/error-handler.service';
@@ -29,7 +29,7 @@ export class DatabaseService {
   employersUrl = ``;
 
   constructor(
-    private http: AuthHttp,
+    private http: HttpClient,
     private errorHandler: ErrorHandlerService
   ) {}
 
@@ -46,7 +46,7 @@ export class DatabaseService {
       catchError(this.errorHandler.handleError('getUserFromDatabase', []))
     );
   }
-  
+
   getShelters(): Observable < any > {
     return this.http.get(this.sheltersUrl)
       .pipe(

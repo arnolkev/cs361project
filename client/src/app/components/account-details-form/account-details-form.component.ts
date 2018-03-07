@@ -44,6 +44,8 @@ export class AccountDetailsFormComponent implements OnInit {
   employers = ['Employer 1', 'Employer 2', 'Employer 3'];
 
   // Form control variables
+  email: FormControl;
+  password: FormControl;
   fname: FormControl;
   lname: FormControl;
   dob: FormControl;
@@ -74,6 +76,8 @@ export class AccountDetailsFormComponent implements OnInit {
     });*/
 
     // Declare form controls, declare form group, link to template
+    this.email = new FormControl(null, [Validators.required]);
+    this.password = new FormControl(null, [Validators.required]);
     this.fname = new FormControl(null, [Validators.required]);
     this.lname = new FormControl(null, [Validators.required]);
     this.dob = new FormControl(null, [Validators.required]);
@@ -85,6 +89,8 @@ export class AccountDetailsFormComponent implements OnInit {
     this.shelter = new FormControl(null, [Validators.required]);
     this.employer = new FormControl(null, [Validators.required]);
     this.formGroup = new FormGroup({
+      email: this.email,
+      password: this.password,
       fname: this.fname,
       lname: this.lname,
       dob: this.dob,
@@ -101,6 +107,8 @@ export class AccountDetailsFormComponent implements OnInit {
   onSubmit() {
     // Create payload to submit to server
     const payload = {
+      email: this.email.value,
+      password: this.password.value,
       fname: this.fname.value,
       lname: this.lname.value,
       dob: this.dob.value,
@@ -130,7 +138,7 @@ export class AccountDetailsFormComponent implements OnInit {
   isValid(): boolean {
 
     // If all generic fields are valid
-    if (this.fname.valid && this.lname.valid && this.dob.valid && this.city.valid && this.state.valid && this.type.valid) {
+    if (this.email.valid && this.password.valid && this.fname.valid && this.lname.valid && this.dob.valid && this.city.valid && this.state.valid && this.type.valid) {
       // If fields specific to account type are valid
       if (this.type.value === this.accountTypes[0]) {
         if (this.gender.valid && this.veteran.valid) {

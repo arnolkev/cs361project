@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'app/services/auth.service';
 import { DatabaseService } from 'app/services/database.service';
 
 @Component({
@@ -9,8 +8,9 @@ import { DatabaseService } from 'app/services/database.service';
 })
 export class HomeComponent implements OnInit {
 
+  loggedIn = false;
+
   constructor(
-    public auth: AuthService,
     private database: DatabaseService
   ) { }
 

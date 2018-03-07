@@ -1,5 +1,11 @@
 <form [formGroup]="formGroup" class="detail-form column-flex">
   <mat-form-field>
+    <input type="email" name="email" matInput placeholder="Email" formControlName="email">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="password" name="password" matInput placeholder="Password" formControlName="password">
+  </mat-form-field>
+  <mat-form-field>
     <input name="fname" matInput placeholder="First Name" formControlName="fname">
   </mat-form-field>
   <mat-form-field>

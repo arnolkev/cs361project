@@ -12,11 +12,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(private database: DatabaseService) { }
 
-  ngOnInit() {
-
-    this.database.getUser().subscribe(res => {
-      this.payload = res._body;
-    });
-  }
+  ngOnInit() {}
 
 }
