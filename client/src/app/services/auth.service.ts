@@ -6,6 +6,8 @@ export class AuthService {
     loggedIn: EventEmitter<boolean> = new EventEmitter();
     loggedOut: EventEmitter<boolean> = new EventEmitter();
 
+    accountType: number = 0;
+
     constructor() {}
 
 
@@ -22,4 +24,16 @@ export class AuthService {
     isLoggedIn() {
         return !!(localStorage.getItem('user_logged_in'));
     }
+
+    getType() {
+        return this.accountType;
+
+    }
+
+    setType(usertype){
+        
+        this.accountType = usertype;
+    }
+
+
 }

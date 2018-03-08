@@ -21,13 +21,19 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {SigninComponent} from "./components/signin/signin.component";
 import {SignupComponent} from "./components/signup/signup.component";
 import {AuthService} from "./services/auth.service";
+import { HUserDashComponent } from './components/h-user-dash/h-user-dash.component';
+import { SUserDashComponent } from './components/s-user-dash/s-user-dash.component';
+import { PUserDashComponent } from './components/p-user-dash/p-user-dash.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardComponent,
         SigninComponent,
-        SignupComponent
+        SignupComponent,
+        HUserDashComponent,
+        SUserDashComponent,
+        PUserDashComponent
     ],
     imports: [
         BrowserModule,

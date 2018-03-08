@@ -1,0 +1,21 @@
+<form>
+    <mat-form-field>
+        <mat-select [(ngModel)]="userType" name="userform" placeholder="Account Type">
+            <mat-option *ngFor="let entry of accountTypes" [value]="entry">{{ entry }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+</form>
+
+<app-h-user-dash *ngIf="userType === accountTypes[0]">
+
+</app-h-user-dash>
+
+<!-- Shelter Employee -->
+<app-s-user-dash *ngIf="userType === accountTypes[1]">
+
+</app-s-user-dash>
+<!-- Public Employee -->
+<app-p-user-dash *ngIf="userType === accountTypes[2]">
+
+</app-p-user-dash>

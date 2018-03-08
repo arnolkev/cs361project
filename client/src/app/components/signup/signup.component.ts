@@ -102,6 +102,10 @@ export class SignupComponent implements OnInit {
 
     onSubmit() {
         // Create payload to submit to server
+       
+       
+        
+       
         const payload = {
             email: this.email.value,
             password: this.password.value,
@@ -115,11 +119,14 @@ export class SignupComponent implements OnInit {
 
         // Add payload fields based on account type
         if (this.type.value === this.accountTypes[0]) {
+            this.authService.setType(0);
             payload['gender'] = this.gender.value;
             payload['veteran'] = this.veteran.value;
         } else if (this.type.value === this.accountTypes[1]) {
+            this.authService.setType(1);
             payload['shelter'] = this.shelter.value;
         } else {
+            this.authService.setType(2);
             payload['employer'] = this.employer.value;
         }
 
