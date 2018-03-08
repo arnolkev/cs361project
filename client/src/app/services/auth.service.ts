@@ -1,13 +1,13 @@
-import {Injectable, EventEmitter} from "@angular/core";
+import {Injectable, EventEmitter} from '@angular/core';
 
 @Injectable()
 export class AuthService {
-    constructor() {
-
-    }
 
     loggedIn: EventEmitter<boolean> = new EventEmitter();
     loggedOut: EventEmitter<boolean> = new EventEmitter();
+
+    constructor() {}
+
 
     logIn() {
         localStorage.setItem('user_logged_in', 'yes');
