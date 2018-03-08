@@ -1,0 +1,19 @@
+<form [formGroup]="formGroup">
+    <mat-form-field>
+        <mat-select #accountTypeSelect placeholder="Account Type" formControlName="type">
+            <mat-option *ngFor="let entry of accountTypes" [value]="entry">{{entry}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <app-h-user-dash *ngIf="type.value === accountTypes[0]">
+
+    </app-h-user-dash>
+
+    <!-- Shelter Employee -->
+    <app-s-user-dash *ngIf="type.value === accountTypes[1]">
+
+    </app-s-user-dash>
+    <!-- Public Employee -->
+    <app-p-user-dash *ngIf="type.value === accountTypes[2]">
+
+    </app-p-user-dash>
+</form>
