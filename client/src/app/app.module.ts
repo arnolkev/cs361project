@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule, Http, RequestOptions} from '@angular/http';
+import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -23,10 +23,10 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {SigninComponent} from './components/signin/signin.component';
 import {SignupComponent} from './components/signup/signup.component';
 import {AuthService} from './services/auth.service';
-import { HUserDashComponent } from './components/h-user-dash/h-user-dash.component';
-import { SUserDashComponent } from './components/s-user-dash/s-user-dash.component';
-import { PUserDashComponent } from './components/p-user-dash/p-user-dash.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import {HUserDashComponent} from './components/h-user-dash/h-user-dash.component';
+import {SUserDashComponent} from './components/s-user-dash/s-user-dash.component';
+import {PUserDashComponent} from './components/p-user-dash/p-user-dash.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
 
 @NgModule({
     declarations: [
