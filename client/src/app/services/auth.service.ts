@@ -8,7 +8,8 @@ export class AuthService {
 
     accountType: number = 0;
 
-    constructor() {}
+    constructor() {
+    }
 
 
     logIn() {
@@ -27,13 +28,9 @@ export class AuthService {
 
     getType() {
         return this.accountType;
-
     }
 
-    setType(usertype){
-        
+    setType(usertype) {
         this.accountType = usertype;
     }
-
-
 }

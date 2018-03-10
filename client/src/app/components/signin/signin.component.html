@@ -1,11 +1,12 @@
 <div class="login-container scrollable">
   <form class="signin-form"
         (ngSubmit)="signIn()"
-        #loginForm="ngForm">
+        #signinForm="ngForm">
     <h1>Welcome to the Homeless Temporary Housing Resource!</h1>
 
     <mat-form-field>
-      <input matInput
+      <input id="email"
+             matInput
              [(ngModel)]="credentials.email"
              placeholder="Email"
              name="email"
@@ -14,7 +15,8 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput
+      <input id="password"
+             matInput
              [(ngModel)]="credentials.password"
              placeholder="Password"
              name="password"
@@ -23,10 +25,11 @@
     </mat-form-field>
 
     <div class="login-btn">
-      <button class="btn btn-primary btn-margin"
-              [disabled]="!loginForm.form.valid"
+      <button id="submit"
+              class="btn btn-primary btn-margin"
+              [disabled]="!signinForm.form.valid"
               type="submit">
-        Log In
+        Log In {{signinForm.form.valid}}
       </button>
 
       <p class="signup">Don't have an account?
