@@ -1,0 +1,20 @@
+<nav class="navbar navbar-dark bg-primary">
+  <div class="container">
+    <div class="navbar-header row-flex">
+      <a class="navbar-brand" routerLink="/">
+        Homeless Temporary Housing
+      </a>
+      <div>
+        <button *ngIf="loggedIn && this.router.url != '/dashboard'" routerLink="/dashboard" class="btn btn-primary">
+          Dashboard
+        </button>
+        <button *ngIf="loggedIn" (click)="logOut()" class="btn btn-primary">
+          Log Out
+        </button>
+        <button *ngIf="!loggedIn && this.router.url != '/'" routerLink='' class="btn btn-primary">
+          Log In
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

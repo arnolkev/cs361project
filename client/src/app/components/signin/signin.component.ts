@@ -1,13 +1,13 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'app-signin',
     templateUrl: './signin.component.html',
     styleUrls: ['./signin.component.css']
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit {
     credentials = {
         email: '',
         password: ''
@@ -15,6 +15,12 @@ export class SigninComponent {
 
     constructor(private router: Router,
                 private authService: AuthService) {
+    }
+
+    ngOnInit() {
+        if (this.router.url === '/' && this.authService.isLoggedIn()) {
+            this.router.navigate(['/dashboard']);
+        }
     }
 
     signIn() {

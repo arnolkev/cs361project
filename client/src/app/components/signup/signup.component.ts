@@ -62,6 +62,10 @@ export class SignupComponent implements OnInit {
 
     ngOnInit() {
 
+        if (this.router.url === '/signup' && this.authService.isLoggedIn()) {
+            this.router.navigate(['/dashboard']);
+        }
+
         // Once routes are updated in service, remove comment below
         /*this.databaseService.getSheltersFromDatabase().subscribe(res => {
          this.shelters = res;

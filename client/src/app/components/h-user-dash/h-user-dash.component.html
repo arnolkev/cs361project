@@ -1,10 +1,22 @@
-<h1>
+<h1 class="text-primary">
     Homeless User Dashboard
 </h1>
 
-<div *ngFor="let entry of shelters">
-    <h3>{{ entry.name }}</h3>
-    <h6>{{ entry.location }}</h6>
-    <p>{{ entry.available }} / {{ entry.beds }} beds available</p>
-
-</div>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let entry of shelters">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            <span>{{ entry.name }}</span>
+        </mat-panel-title>
+        <mat-panel-description>
+            <span>{{ entry.distance }} miles away</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-divider></mat-divider>
+      <div class="column-flex mt-3">
+            <span>Address: {{ entry.location }}</span>
+            <span>Beds Available: {{ entry.available }}</span>
+            <span>Total Beds: {{ entry.beds }}</span>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>

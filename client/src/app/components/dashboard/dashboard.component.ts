@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DatabaseService} from 'app/services/database.service';
 import {FormControl, FormGroup} from '@angular/forms'
 import {AuthService} from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-dashboard',
@@ -16,10 +17,16 @@ export class DashboardComponent implements OnInit {
     payload;
 
     constructor(private authService: AuthService,
-        private database: DatabaseService) {
-    }
+        private database: DatabaseService,
+        private router: Router
+    ) {}
 
     ngOnInit() {
+
+        if (this.router.url === '/dashboard' && !this.authService.isLoggedIn()) {
+            this.router.navigate(['/']);
+        }
+
         this.userType = this.accountTypes[this.authService.getType()];
     }
 }
