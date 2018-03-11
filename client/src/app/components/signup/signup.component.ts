@@ -105,8 +105,11 @@ export class SignupComponent implements OnInit {
     }
 
     onSubmit() {
-        // Create payload to submit to server
+        if (!this.isValid()) {
+            return;
+        }
 
+        // Create payload to submit to server
         const payload = {
             email: this.email.value,
             password: this.password.value,

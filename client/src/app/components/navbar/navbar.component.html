@@ -8,7 +8,7 @@
         <button *ngIf="loggedIn && this.router.url != '/dashboard'" routerLink="/dashboard" class="btn btn-primary">
           Dashboard
         </button>
-        <button *ngIf="loggedIn" (click)="logOut()" class="btn btn-primary">
+        <button id="logout" *ngIf="loggedIn" (click)="logOut()" class="btn btn-primary">
           Log Out
         </button>
         <button *ngIf="!loggedIn && this.router.url != '/'" routerLink='' class="btn btn-primary">

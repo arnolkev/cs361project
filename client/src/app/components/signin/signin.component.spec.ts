@@ -8,8 +8,7 @@ import {AuthService} from "../../services/auth.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DebugElement} from "@angular/core";
 import {By} from "@angular/platform-browser";
-import {tick} from "@angular/core/testing";
-import {fakeAsync} from "@angular/core/testing";
+import {DashboardComponent} from "../dashboard/dashboard.component";
 
 describe('SigninComponent', () => {
     let component: SigninComponent;
@@ -33,7 +32,9 @@ describe('SigninComponent', () => {
     beforeEach(async(() => {
         authService = new AuthService();
         TestBed.configureTestingModule({
-            declarations: [SigninComponent],
+            declarations: [
+                SigninComponent
+            ],
             providers: [
                 DatabaseService,
                 {provide: AuthService, useValue: authService}
@@ -59,6 +60,7 @@ describe('SigninComponent', () => {
         component.ngOnInit();
         fixture.detectChanges();
         spyOn(authService, 'logIn');
+        spyOn((<any>component).router, 'navigate');
     });
 
     it('should create', () => {
@@ -77,7 +79,6 @@ describe('SigninComponent', () => {
     it('should not attempt to sign in if email is not provided', async() => {
         fixture.whenStable().then(() => {
             setInputValue(passwordEl, testPassword);
-            console.log(component.signinForm.form.valid);
             formEl.triggerEventHandler('submit', {});
             expect(authService.logIn).not.toHaveBeenCalled();
         });
@@ -86,7 +87,6 @@ describe('SigninComponent', () => {
     it('should not attempt to sign in if password is not provided', async() => {
         fixture.whenStable().then(() => {
             setInputValue(emailEl, testEmail);
-            console.log(component.signinForm.form.valid);
             formEl.triggerEventHandler('submit', {});
             expect(authService.logIn).not.toHaveBeenCalled();
         });
