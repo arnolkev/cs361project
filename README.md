@@ -3,8 +3,11 @@
 # Angular client app instructions
 Install NodeJS first and navigate to client directory. Then run these commands:
 `npm install -g @angular/cli`
+
 `cd client`
+
 `npm install`
+
 `ng serve`
 
 The app is now running on http://localhost:4200/
@@ -12,6 +15,7 @@ The app is now running on http://localhost:4200/
 
 # Running unit tests
 `cd client`
+
 `ng test`
 
 
