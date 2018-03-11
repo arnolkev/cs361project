@@ -1,6 +1,6 @@
 # cs361project
 
-# Angular client app instructions
+# Running the app locally
 Install NodeJS first and navigate to client directory. Then run these commands:
 `npm install -g @angular/cli`
 
@@ -19,7 +19,7 @@ The app is now running on http://localhost:4200/
 `ng test`
 
 
-# Publishing to Github Pages instructions
+# Publishing to Github Pages
 
 Create a repository named `<your_github_username>.github.io`
 Clone the new repository.
