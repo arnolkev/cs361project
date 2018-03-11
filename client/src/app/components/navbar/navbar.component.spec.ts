@@ -16,7 +16,6 @@ describe('NavbarComponent', () => {
 
     beforeEach(async(() => {
         authService = new AuthService();
-        spyOn(authService, 'logOut');
         TestBed.configureTestingModule({
             declarations: [
                 NavbarComponent
@@ -44,8 +43,16 @@ describe('NavbarComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('should clear user session in local storage when Log Out button is clicked', () => {
+    it('should emit logout event to the whole app', () => {
+        spyOn(authService, 'logOut');
         logOutBtn.triggerEventHandler('click', {});
         expect(authService.logOut).toHaveBeenCalled();
+    });
+
+    it('should clear user session in local storage when Log Out button is clicked', () => {
+        localStorage.setItem('user_logged_in', 'yes');
+        logOutBtn.triggerEventHandler('click', {});
+        let currentState = localStorage.getItem('user_logged_in');
+        expect(currentState).toEqual(null);
     });
 });

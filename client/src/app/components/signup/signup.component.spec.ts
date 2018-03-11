@@ -122,4 +122,13 @@ describe('SignupComponent', () => {
             expect(authService.logIn).not.toHaveBeenCalled();
         });
     });
+
+    it('should not create account if account type is not entered', async() => {
+        fixture.whenStable().then(() => {
+            fixture.detectChanges();
+            setCommonInputFields();
+            submitBtn.triggerEventHandler('click', {});
+            expect(authService.logIn).not.toHaveBeenCalled();
+        });
+    });
 });
