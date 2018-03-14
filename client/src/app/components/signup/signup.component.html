@@ -42,7 +42,7 @@
   <!-- Shelter Employee -->
   <mat-form-field *ngIf="type.value === accountTypes[1]">
     <mat-select placeholder="Shelter" formControlName="shelter">
-      <mat-option *ngFor="let shelter of shelters" [value]="shelter">{{shelter}}</mat-option>
+      <mat-option *ngFor="let shelter of shelters" [value]="shelter">{{shelter.name}}</mat-option>
     </mat-select>
   </mat-form-field>
   <!-- Public Employee -->

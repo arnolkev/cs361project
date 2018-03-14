@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-    accountTypes = ['Homeless User', 'Shelter Employee', 'Public Employee'];
-    userType = this.accountTypes[0];
+    accountTypes;
+    userType;
 
     payload;
 
@@ -22,6 +22,9 @@ export class DashboardComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+
+        this.accountTypes = this.database.getAccountTypes();
+        this.userType = this.accountTypes[0];
 
         if (this.router.url === '/dashboard' && !this.authService.isLoggedIn()) {
             this.router.navigate(['/']);

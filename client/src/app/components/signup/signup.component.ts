@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from "../../services/auth.service";
+import { DatabaseService } from 'app/services/database.service';
 
 @Component({
     selector: 'app-signup',
@@ -19,26 +20,15 @@ import {AuthService} from "../../services/auth.service";
 export class SignupComponent implements OnInit {
 
     // List of states for select dropdown
-    states = [
-        'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
-        'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-        'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-        'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
-        'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-    ];
-
+    states;
     // List of account types for accountType dropdown
-    accountTypes = ['Homeless User', 'Shelter Employee', 'Public Employee'];
-
+    accountTypes;
     // List of genders for gender dropdown
-    genders = ['Male', 'Female', 'Other', 'Decline to Identify'];
-
+    genders;
     // Once server shelter endpoint is set up, delete hardcoded shelter list
-    shelters = ['Shelter 1', 'Shelter 2', 'Shelter 3'];
+    shelters;
     // Once server employer endpoint is set up, delete hardcoded employer list
-    employers = ['Employer 1', 'Employer 2', 'Employer 3'];
+    employers;
 
     // Form control variables
     email: FormControl;
@@ -56,11 +46,20 @@ export class SignupComponent implements OnInit {
     // Form group variables
     formGroup: FormGroup;
 
-    constructor(private authService: AuthService,
-                private router: Router) {
+    constructor(
+        private authService: AuthService,
+        private router: Router,
+        private database: DatabaseService
+    ) {
     }
 
     ngOnInit() {
+
+        this.states = this.database.getStates();
+        this.accountTypes = this.database.getAccountTypes();
+        this.genders = this.database.getGenders();
+        this.shelters = this.database.getShelters();
+        this.employers = this.database.getEmployers();
 
         if (this.router.url === '/signup' && this.authService.isLoggedIn()) {
             this.router.navigate(['/dashboard']);
@@ -106,7 +105,6 @@ export class SignupComponent implements OnInit {
 
     onSubmit() {
         // Create payload to submit to server
-
         const payload = {
             email: this.email.value,
             password: this.password.value,
@@ -125,6 +123,7 @@ export class SignupComponent implements OnInit {
             payload['veteran'] = this.veteran.value;
         } else if (this.type.value === this.accountTypes[1]) {
             this.authService.setType(1);
+            this.authService.setShelter(this.shelter.value);
             payload['shelter'] = this.shelter.value;
         } else {
             this.authService.setType(2);
@@ -143,6 +142,7 @@ export class SignupComponent implements OnInit {
     isValid(): boolean {
 
         // If all generic fields are valid
+        // tslint:disable-next-line:max-line-length
         if (this.email.valid && this.password.valid && this.fname.valid && this.lname.valid && this.dob.valid && this.city.valid && this.state.valid && this.type.valid) {
             // If fields specific to account type are valid
             if (this.type.value === this.accountTypes[0]) {
@@ -164,8 +164,7 @@ export class SignupComponent implements OnInit {
                     return false;
                 }
             }
-        }
-        ;
+        };
 
         return false;
     }
