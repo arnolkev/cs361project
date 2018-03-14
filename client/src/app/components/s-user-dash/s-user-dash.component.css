@@ -1,0 +1,38 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: black;
+}
+
+.signin-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+mat-form-field {
+  width: 250px;
+}
+
+button[type="submit"] {
+  width: 250px;
+}
+
+.form-width {
+  width: 250px;
+}
+
+.row-flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

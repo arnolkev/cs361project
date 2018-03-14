@@ -12,7 +12,9 @@ import {
     MatSelectModule,
     MatRadioModule,
     MatExpansionModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSortModule,
+    MatTableModule
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -53,6 +55,8 @@ import {NavbarComponent} from './components/navbar/navbar.component';
         MatRadioModule,
         MatExpansionModule,
         MatDividerModule,
+        MatSortModule,
+        MatTableModule,
         BrowserAnimationsModule
     ],
     providers: [

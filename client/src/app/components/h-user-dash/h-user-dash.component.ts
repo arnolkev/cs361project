@@ -2,6 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { DatabaseService } from 'app/services/database.service';
 
 @Component({
   selector: 'app-h-user-dash',
@@ -10,46 +11,14 @@ import {
 })
 export class HUserDashComponent implements OnInit {
 
-  shelters = [{
-      name: 'Shelter1',
-      beds: 25,
-      available: 15,
-      location: '1 Test Street',
-      distance: 1.1
-    },
-    {
-      name: 'Shelter2',
-      beds: 50,
-      available: 3,
-      location: '35 Computer Avenue',
-      distance: 1.4
-    },
-    {
-      name: 'Shelter3',
-      beds: 100,
-      available: 52,
-      location: '5 Angular Boulevard',
-      distance: 3.2
-    },
-    {
-      name: 'Shelter4',
-      beds: 75,
-      available: 32,
-      location: '16 Main Street',
-      distance: 4.6
-    },
-    {
-      name: 'Shelter5',
-      beds: 40,
-      available: 30,
-      location: '1000 Oregon Trail',
-      distance: 5.3
-    }
-  ];
+  shelters;
 
+  constructor(
+    private database: DatabaseService
+  ) {}
 
-  constructor() {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.shelters = this.database.getShelters();
+  }
 
 }

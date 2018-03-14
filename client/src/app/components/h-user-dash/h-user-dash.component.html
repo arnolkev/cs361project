@@ -15,7 +15,7 @@
       <mat-divider></mat-divider>
       <div class="column-flex mt-3">
             <span>Address: {{ entry.location }}</span>
-            <span>Beds Available: {{ entry.available }}</span>
+            <span>Beds Available: {{ entry.beds - entry.checkedIn.length }}</span>
             <span>Total Beds: {{ entry.beds }}</span>
       </div>
     </mat-expansion-panel>
