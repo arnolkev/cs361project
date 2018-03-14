@@ -10,14 +10,15 @@ import {AuthService} from "./services/auth.service";
  import {SignupComponent} from "./components/signup/signup.component";
  import {DashboardComponent} from "./components/dashboard/dashboard.component";
  import {
-     MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
-     MatSelectModule, MatRadioModule
+    MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule,
+    MatSelectModule, MatRadioModule, MatExpansionModule, MatDividerModule
  } from "@angular/material";
  import {FormsModule, ReactiveFormsModule} from "@angular/forms";
  import {HttpClientModule} from "@angular/common/http";
  import {SUserDashComponent} from "./components/s-user-dash/s-user-dash.component";
  import {HUserDashComponent} from "./components/h-user-dash/h-user-dash.component";
  import {PUserDashComponent} from "./components/p-user-dash/p-user-dash.component";
+ import {NavbarComponent} from "./components/navbar/navbar.component";
 
  describe('AppComponent', () => {
      beforeEach(() => {
@@ -29,7 +30,8 @@ import {AuthService} from "./services/auth.service";
                  DashboardComponent,
                  SUserDashComponent,
                  HUserDashComponent,
-                 PUserDashComponent
+                 PUserDashComponent,
+                 NavbarComponent
              ],
              imports: [
                  RouterModule.forRoot(ROUTES),
@@ -39,6 +41,8 @@ import {AuthService} from "./services/auth.service";
                  MatNativeDateModule,
                  MatSelectModule,
                  MatRadioModule,
+                 MatExpansionModule,
+                 MatDividerModule,
                  ReactiveFormsModule,
                 FormsModule,
                  HttpClientModule

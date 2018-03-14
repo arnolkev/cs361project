@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 
@@ -8,6 +8,7 @@ import {AuthService} from '../../services/auth.service';
     styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+    @ViewChild('signinForm') signinForm;
     credentials = {
         email: '',
         password: ''
@@ -24,7 +25,9 @@ export class SigninComponent implements OnInit {
     }
 
     signIn() {
-        this.authService.logIn();
-        this.router.navigate(['dashboard']);
+        if (this.signinForm.form.valid && this.credentials.email && this.credentials.password) {
+            this.authService.logIn();
+            this.router.navigate(['dashboard']);
+        }
     }
 }

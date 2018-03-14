@@ -1,24 +1,31 @@
 # cs361project
 
-# Server instructions
-
-Install NodeJS and navigate to the server directory.  In a terminal:
-
-`npm install`
-
-`node server`
-
-The server is now running on http://localhost:8080
-
-# Angular client app instructions
-Install NodeJS first and navigate to client directory. In a second terminal:
-
+# Running the app locally
+Install NodeJS first and navigate to client directory. Then run these commands:
 `npm install -g @angular/cli`
 
+`cd client`
+
 `npm install`
 
-Before continuing, make sure the server is already running.
+`ng serve`
 
-`npm start`
+The app is now running on http://localhost:4200/
 
-The app is now running on http://localhost:3000/
+
+# Running unit tests
+`cd client`
+
+`ng test`
+
+
+# Publishing to Github Pages
+
+Create a repository named `<your_github_username>.github.io`
+Clone the new repository.
+In the ./client folder, run `ng build --prod --base-href "https://<your_github_username>github.io/"`
+Copy the contents of ./client/dist/ folder into your newly cloned github repo. 
+Push the changes.
+The app is now available at https://<your_github_username>.github.io/
+
+More details here: https://pages.github.com
