@@ -139,6 +139,76 @@ export class DatabaseService {
     distance: 4.6
   },
   {
+    name: 'My Shelter',
+    beds: 234,
+    checkedIn: [
+      this.homeless[4],
+      this.homeless[5],
+      this.homeless[6],
+      this.homeless[7],
+      this.homeless[8],
+      this.homeless[9]
+    ],
+    location: '645616 Main Street',
+    distance: 4.6
+  },
+  {
+    name: 'Other Shelter',
+    beds: 75,
+    checkedIn: [
+      this.homeless[4],
+      this.homeless[5],
+      this.homeless[6],
+      this.homeless[7],
+      this.homeless[8],
+      this.homeless[9]
+    ],
+    location: 'No Man Street',
+    distance: 4.6
+  },
+  {
+    name: 'Moms House',
+    beds: 75,
+    checkedIn: [
+      this.homeless[4],
+      this.homeless[5],
+      this.homeless[6],
+      this.homeless[7],
+      this.homeless[8],
+      this.homeless[9]
+    ],
+    location: 'NONE OF YOUR BUISNESS',
+    distance: 4.6
+  },
+  {
+    name: 'Dope City',
+    beds: 75,
+    checkedIn: [
+      this.homeless[4],
+      this.homeless[5],
+      this.homeless[6],
+      this.homeless[7],
+      this.homeless[8],
+      this.homeless[9]
+    ],
+    location: '6969 Dope Street',
+    distance: 4.6
+  },
+  {
+    name: 'Dweeb Shack',
+    beds: 75,
+    checkedIn: [
+      this.homeless[4],
+      this.homeless[5],
+      this.homeless[6],
+      this.homeless[7],
+      this.homeless[8],
+      this.homeless[9]
+    ],
+    location: 'Over 9000 Street',
+    distance: 4.6
+  },
+  {
     name: 'Shelter 5',
     beds: 40,
     checkedIn: [],

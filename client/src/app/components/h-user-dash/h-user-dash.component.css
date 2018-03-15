@@ -1,4 +1,8 @@
 .column-flex {
     display: flex;
     flex-direction: column;
-  }
+}
+
+.mat-expansion-panel-header-title {
+    width: 20%;
+}
