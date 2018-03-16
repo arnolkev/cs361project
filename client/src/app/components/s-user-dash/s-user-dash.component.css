@@ -36,3 +36,11 @@ button[type="submit"] {
   flex-direction: row;
   justify-content: center;
 }
+
+.update-info {
+  margin: 50px 0;
+}
+
+.update-info mat-form-field {
+  display: block;
+}

@@ -1,60 +1,103 @@
 <h1 class="text-primary">
   {{ shelter.name }} Dashboard
 </h1>
+
 <div>
-  <div>
-    <h2 class="text-primary">Check In</h2>
-    <div class="login-container scrollable">
-      <form class="signin-form" #signinForm="ngForm">
-        <mat-form-field>
-          <input id="email" matInput [(ngModel)]="credentials.email" placeholder="Email" name="email" type="email" required>
-        </mat-form-field>
+  <h2 class="text-primary">Check In</h2>
+  <div class="login-container scrollable">
+    <form class="signin-form" #signinForm="ngForm">
+      <mat-form-field>
+        <input id="email" matInput [(ngModel)]="credentials.email" placeholder="Email" name="email" type="email" required>
+      </mat-form-field>
 
-        <mat-form-field>
-          <input id="password" matInput [(ngModel)]="credentials.password" placeholder="Password" name="password" type="password" required>
-        </mat-form-field>
+      <mat-form-field>
+        <input id="password" matInput [(ngModel)]="credentials.password" placeholder="Password" name="password" type="password" required>
+      </mat-form-field>
 
-        <div class="login-btn">
-          <button id="submit" class="btn btn-primary btn-margin" [disabled]="!signinForm.form.valid" type="submit" (click)="onSubmit()">
-            Submit
-          </button>
-        </div>
-      </form>
-      <div class="row-flex form-width">
-        <span>-or-</span>
-      </div>
       <div class="login-btn">
-        <button class="btn btn-primary btn-margin form-width" (click)="onSkip()">
-          Skip
+        <button id="submit" class="btn btn-primary btn-margin" [disabled]="!signinForm.form.valid" type="submit" (click)="onSubmit()">
+          Submit
         </button>
       </div>
-
+    </form>
+    <div class="row-flex form-width">
+      <span>-or-</span>
     </div>
+    <div class="login-btn">
+      <button class="btn btn-primary btn-margin form-width" (click)="onSkip()">
+        Skip
+      </button>
+    </div>
+
   </div>
-  <div class="mt-4">
-    <h2 class="text-primary"> {{ date | date:'shortDate' }} Guest List</h2>
-    <div *ngIf="this.shelter.checkedIn.length > 0" class="example-container mat-elevation-z8">
-      <mat-table #table [dataSource]="dataSource" matSort>
+</div>
+<div class="mt-4">
+  <h2 class="text-primary"> {{ date | date:'shortDate' }} Guest List</h2>
+  <div *ngIf="this.shelter.checkedIn.length > 0" class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource" matSort>
 
-        <!-- Id Column -->
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-        </ng-container>
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-        </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-    </div>
-    <div *ngIf="this.shelter.checkedIn.length === 0">
-      <span>No users currently checked in.</span>
-    </div>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
   </div>
+  <div *ngIf="this.shelter.checkedIn.length === 0">
+    <span>No users currently checked in.</span>
+  </div>
+</div>
 
+<div class="update-info">
+  <button *ngIf="!editFormDisplayed"
+          class="btn btn-primary btn-margin form-width"
+          (click)="editFormDisplayed = true">
+    Update Shelter Info
+  </button>
+
+  <div *ngIf="editFormDisplayed">
+    <mat-form-field>
+      <input id="name"
+             matInput
+             [(ngModel)]="shelter.name"
+             placeholder="Name"
+             name="name"
+             type="text"
+             required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input id="address"
+             matInput
+             [(ngModel)]="shelter.location"
+             placeholder="Location"
+             name="address"
+             type="text"
+             required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input id="beds"
+             matInput
+             [(ngModel)]="shelter.beds"
+             placeholder="Total number of beds"
+             name="beds"
+             type="number"
+             required>
+    </mat-form-field>
+
+    <button class="btn btn-primary btn-margin form-width"
+            (click)="editFormDisplayed = false">
+      Save Changes
+    </button>
+  </div>
 </div>
