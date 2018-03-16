@@ -1,0 +1,48 @@
+<h1 class="text-primary">
+    App Admin Dashboard
+</h1>
+
+<h4 *ngIf="!count">
+    All done! No more pending verifications to review.
+</h4>
+
+<div *ngIf="count" class="pending-verifications mat-elevation-z8">
+    <mat-table #table [dataSource]="pendingVerifications">
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index;"> {{element.type}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index;">{{element.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index;"> {{element.email}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="employer">
+            <mat-header-cell *matHeaderCellDef>Employer</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index;"> {{element.employer.name}}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index;">
+                <button class="btn btn-primary btn-margin form-width"
+                        (click)="removeFromDb(i)">
+                    Approve
+                </button>
+                <button class="btn btn-danger btn-margin form-width"
+                        (click)="removeFromDb(i)">
+                    Delete
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+    </mat-table>
+</div>

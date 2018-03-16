@@ -1,251 +1,294 @@
 import {
-  Injectable
+    Injectable
 } from '@angular/core';
 import {
-  Observable
+    Observable
 } from 'rxjs/Observable';
 import {
-  Subject
+    Subject
 } from 'rxjs/Subject';
 import {
-  catchError
+    catchError
 } from 'rxjs/operators';
 import 'rxjs/add/operator/map';
 import {
-  HttpClient
+    HttpClient
 } from '@angular/common/http';
 import {
-  ErrorHandlerService
+    ErrorHandlerService
 } from 'app/services/error-handler.service';
 
 
 @Injectable()
 export class DatabaseService {
 
-  accountTypes = ['Homeless User', 'Shelter Employee', 'Public Employee'];
+    accountTypes = ['Homeless User', 'Shelter Employee', 'Public Employee', 'App Admin'];
 
-  // List of states for select dropdown
-  states = [
-      'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
-      'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
-      'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-      'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
-      'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
-      'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-      'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-  ];
+    // List of states for select dropdown
+    states = [
+        'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
+        'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky',
+        'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+        'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico',
+        'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania',
+        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+    ];
 
-  // List of genders for gender dropdown
-  genders = ['Male', 'Female', 'Other', 'Decline to Identify'];
+    // List of genders for gender dropdown
+    genders = ['Male', 'Female', 'Other', 'Decline to Identify'];
 
-  homeless = [
-    {
-      id: 1,
-      name: 'Person 1'
+    homeless = [
+        {
+            id: 1,
+            name: 'Person 1'
+        },
+        {
+            id: 2,
+            name: 'Person 2'
+        },
+        {
+            id: 3,
+            name: 'Person 3'
+        },
+        {
+            id: 4,
+            name: 'Person 4'
+        },
+        {
+            id: 5,
+            name: 'Person 5'
+        },
+        {
+            id: 6,
+            name: 'Person 6'
+        },
+        {
+            id: 7,
+            name: 'Person 7'
+        },
+        {
+            id: 8,
+            name: 'Person 8'
+        },
+        {
+            id: 9,
+            name: 'A Person 9'
+        },
+        {
+            id: 10,
+            name: 'Person 10'
+        }
+    ];
+
+    // Once server shelter endpoint is set up, delete hardcoded shelter list
+    shelters = [{
+        name: 'Shelter 1',
+        beds: 25,
+        checkedIn: [
+            this.homeless[2],
+            this.homeless[1],
+            this.homeless[4],
+            this.homeless[6],
+            this.homeless[8],
+            this.homeless[9]
+        ],
+        location: '1 Test Street',
+        distance: 1.1
     },
-    {
-      id: 2,
-      name: 'Person 2'
-    },
-    {
-      id: 3,
-      name: 'Person 3'
-    },
-    {
-      id: 4,
-      name: 'Person 4'
-    },
-    {
-      id: 5,
-      name: 'Person 5'
-    },
-    {
-      id: 6,
-      name: 'Person 6'
-    },
-    {
-      id: 7,
-      name: 'Person 7'
-    },
-    {
-      id: 8,
-      name: 'Person 8'
-    },
-    {
-      id: 9,
-      name: 'A Person 9'
-    },
-    {
-      id: 10,
-      name: 'Person 10'
+        {
+            name: 'Shelter 2',
+            beds: 50,
+            checkedIn: [
+                this.homeless[2],
+                this.homeless[3],
+                this.homeless[4],
+                this.homeless[6],
+                this.homeless[8],
+                this.homeless[9]
+            ],
+            location: '35 Computer Avenue',
+            distance: 1.4
+        },
+        {
+            name: 'Shelter 3',
+            beds: 100,
+            checkedIn: [
+                this.homeless[3],
+                this.homeless[4],
+                this.homeless[5],
+                this.homeless[6],
+                this.homeless[8],
+                this.homeless[9]
+            ],
+            location: '5 Angular Boulevard',
+            distance: 3.2
+        },
+        {
+            name: 'Shelter 4',
+            beds: 75,
+            checkedIn: [
+                this.homeless[4],
+                this.homeless[5],
+                this.homeless[6],
+                this.homeless[7],
+                this.homeless[8],
+                this.homeless[9]
+            ],
+            location: '16 Main Street',
+            distance: 4.6
+        },
+        {
+            name: 'My Shelter',
+            beds: 234,
+            checkedIn: [
+                this.homeless[4],
+                this.homeless[5],
+                this.homeless[6],
+                this.homeless[7],
+                this.homeless[8],
+                this.homeless[9]
+            ],
+            location: '645616 Main Street',
+            distance: 4.6
+        },
+        {
+            name: 'Other Shelter',
+            beds: 75,
+            checkedIn: [
+                this.homeless[4],
+                this.homeless[5],
+                this.homeless[6],
+                this.homeless[7],
+                this.homeless[8],
+                this.homeless[9]
+            ],
+            location: 'No Man Street',
+            distance: 4.6
+        },
+        {
+            name: 'Moms House',
+            beds: 75,
+            checkedIn: [
+                this.homeless[4],
+                this.homeless[5],
+                this.homeless[6],
+                this.homeless[7],
+                this.homeless[8],
+                this.homeless[9]
+            ],
+            location: 'NONE OF YOUR BUISNESS',
+            distance: 4.6
+        },
+        {
+            name: 'Dope City',
+            beds: 75,
+            checkedIn: [
+                this.homeless[4],
+                this.homeless[5],
+                this.homeless[6],
+                this.homeless[7],
+                this.homeless[8],
+                this.homeless[9]
+            ],
+            location: '6969 Dope Street',
+            distance: 4.6
+        },
+        {
+            name: 'Dweeb Shack',
+            beds: 75,
+            checkedIn: [
+                this.homeless[4],
+                this.homeless[5],
+                this.homeless[6],
+                this.homeless[7],
+                this.homeless[8],
+                this.homeless[9]
+            ],
+            location: 'Over 9000 Street',
+            distance: 4.6
+        },
+        {
+            name: 'Shelter 5',
+            beds: 40,
+            checkedIn: [],
+            location: '1000 Oregon Trail',
+            distance: 5.3
+        }
+    ];
+
+    pendingVerifications = [
+        {
+            type: 'shelter',
+            name: 'John Doe',
+            email: 'jdoe@bestshelter.com',
+            employer: this.shelters[0]
+        },
+        {
+            type: 'public',
+            name: 'Jane Doe',
+            email: 'jdoe@ssa.com',
+            employer: {
+                name: 'SSA'
+            }
+        },
+        {
+            type: 'shelter',
+            name: 'Mark Lee',
+            email: 'mlee@comeandstay.com',
+            employer: this.shelters[1]
+        },
+        {
+            type: 'public',
+            name: 'Tatiana Smith',
+            email: 'tsmith@someagency.com',
+            employer: {
+                name: 'Some Agency'
+            }
+        },
+        {
+            type: 'shelter',
+            name: 'Nate Wood',
+            email: 'nwood@gmail.com',
+            employer: this.shelters[3]
+        },
+    ];
+    // Once server employer endpoint is set up, delete hardcoded employer list
+    employers = ['Employer 1', 'Employer 2', 'Employer 3'];
+
+    constructor(private http: HttpClient,
+                private errorHandler: ErrorHandlerService) {
     }
-  ];
 
-  // Once server shelter endpoint is set up, delete hardcoded shelter list
-  shelters = [{
-    name: 'Shelter 1',
-    beds: 25,
-    checkedIn: [
-      this.homeless[2],
-      this.homeless[1],
-      this.homeless[4],
-      this.homeless[6],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: '1 Test Street',
-    distance: 1.1
-  },
-  {
-    name: 'Shelter 2',
-    beds: 50,
-    checkedIn: [
-      this.homeless[2],
-      this.homeless[3],
-      this.homeless[4],
-      this.homeless[6],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: '35 Computer Avenue',
-    distance: 1.4
-  },
-  {
-    name: 'Shelter 3',
-    beds: 100,
-    checkedIn: [
-      this.homeless[3],
-      this.homeless[4],
-      this.homeless[5],
-      this.homeless[6],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: '5 Angular Boulevard',
-    distance: 3.2
-  },
-  {
-    name: 'Shelter 4',
-    beds: 75,
-    checkedIn: [
-      this.homeless[4],
-      this.homeless[5],
-      this.homeless[6],
-      this.homeless[7],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: '16 Main Street',
-    distance: 4.6
-  },
-  {
-    name: 'My Shelter',
-    beds: 234,
-    checkedIn: [
-      this.homeless[4],
-      this.homeless[5],
-      this.homeless[6],
-      this.homeless[7],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: '645616 Main Street',
-    distance: 4.6
-  },
-  {
-    name: 'Other Shelter',
-    beds: 75,
-    checkedIn: [
-      this.homeless[4],
-      this.homeless[5],
-      this.homeless[6],
-      this.homeless[7],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: 'No Man Street',
-    distance: 4.6
-  },
-  {
-    name: 'Moms House',
-    beds: 75,
-    checkedIn: [
-      this.homeless[4],
-      this.homeless[5],
-      this.homeless[6],
-      this.homeless[7],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: 'NONE OF YOUR BUISNESS',
-    distance: 4.6
-  },
-  {
-    name: 'Dope City',
-    beds: 75,
-    checkedIn: [
-      this.homeless[4],
-      this.homeless[5],
-      this.homeless[6],
-      this.homeless[7],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: '6969 Dope Street',
-    distance: 4.6
-  },
-  {
-    name: 'Dweeb Shack',
-    beds: 75,
-    checkedIn: [
-      this.homeless[4],
-      this.homeless[5],
-      this.homeless[6],
-      this.homeless[7],
-      this.homeless[8],
-      this.homeless[9]
-    ],
-    location: 'Over 9000 Street',
-    distance: 4.6
-  },
-  {
-    name: 'Shelter 5',
-    beds: 40,
-    checkedIn: [],
-    location: '1000 Oregon Trail',
-    distance: 5.3
-  }
-];
-  // Once server employer endpoint is set up, delete hardcoded employer list
-  employers = ['Employer 1', 'Employer 2', 'Employer 3'];
+    getAccountTypes() {
+        return this.accountTypes;
+    }
 
-  constructor(
-    private http: HttpClient,
-    private errorHandler: ErrorHandlerService
-  ) {}
+    getStates() {
+        return this.states;
+    }
 
-  getAccountTypes() {
-    return this.accountTypes;
-  }
+    getHUsers() {
+        return this.homeless;
+    }
 
-  getStates() {
-    return this.states;
-  }
+    getGenders() {
+        return this.genders;
+    }
 
-  getHUsers() {
-    return this.homeless;
-  }
+    getShelters() {
+        return this.shelters;
+    }
 
-  getGenders() {
-    return this.genders;
-  }
+    getEmployers() {
+        return this.employers;
+    }
 
-  getShelters() {
-    return this.shelters;
-  }
+    getPendingVerifications() {
+        return this.pendingVerifications;
+    }
 
-  getEmployers() {
-    return this.employers;
-  }
-
+    removeVerification(index) {
+        this.pendingVerifications.splice(index, 1);
+    }
 }

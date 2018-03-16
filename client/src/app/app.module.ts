@@ -29,6 +29,7 @@ import {HUserDashComponent} from './components/h-user-dash/h-user-dash.component
 import {SUserDashComponent} from './components/s-user-dash/s-user-dash.component';
 import {PUserDashComponent} from './components/p-user-dash/p-user-dash.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
+import {AUserDashComponent} from "./components/a-user-dash/a-user-dash.component";
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
         HUserDashComponent,
         SUserDashComponent,
         PUserDashComponent,
+        AUserDashComponent,
         NavbarComponent
     ],
     imports: [
